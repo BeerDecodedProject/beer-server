@@ -5,7 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --harmony ."
+    "start": "node --harmony .",
+    "shitty-datas": "node --harmony src/generators/clear.js && node --harmony src/generators/brewery.js && node --harmony src/generators/seller.js && node --harmony src/generators/beer.js"
   },
   "repository": {
     "type": "git",

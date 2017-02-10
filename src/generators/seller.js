@@ -8,10 +8,15 @@
   await dbManager.init()
   await dbManager.checkStructure()
 
-  const SellerModel = require('./../models/seller')
   const faker = require('faker')
+  const SellerModel = require('./../models/seller')
 
-  for (let i = 0; i < 100000; i++)
-    SellerModel.create({ name: faker.company.companyName() })
-
+  let done = 0
+  for(let i = 0; i < 20; ++i){
+    SellerModel.create({name: faker.company.companyName()}).then(() => {
+      if(++done < 20) return
+      console.log('Sellers generated')
+      process.exit(0)
+    })
+  } 
 })()

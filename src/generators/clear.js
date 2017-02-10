@@ -9,9 +9,14 @@
   await dbManager.checkStructure()
 
   const SellerModel = require('./../models/seller')
-  const faker = require('faker')
+  const BreweryModel = require('./../models/brewery')
+  const BeerModel = require('./../models/beer')
 
-  for (let i = 0; i < 100000; i++)
-    SellerModel.create({ name: faker.company.companyName() })
+  await BeerModel.clear()
+  await BreweryModel.clear()
+  await SellerModel.clear()
 
+  console.log('Database cleared')
+
+  process.exit(0)
 })()
