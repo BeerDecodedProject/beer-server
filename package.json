@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/BeerDecode/beer-server#readme",
   "dependencies": {
-    "express": "^4.14.1"
+    "koa": "2.0.0-alpha.7",
+    "koa-router": "7.0.1"
   }
 }
