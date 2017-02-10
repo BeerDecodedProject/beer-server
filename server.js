@@ -8,4 +8,6 @@ const app = express()
 let router = express.Router()
 
 
-app.listen(config.httpPort)
+app.listen(config.httpPort, () => {
+    console.log(`Some magic is happening on port ${config.httpPort}...`)
+})
