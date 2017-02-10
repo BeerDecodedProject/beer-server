@@ -1,7 +1,7 @@
 {
     "httpPort": 80,
-    "rHost": "localhost",
     "database": {
+        "host": "localhost",
         "port": 28015,
         "db": "beerdecoded",
         "user": "admin",
