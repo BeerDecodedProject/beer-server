@@ -1,0 +1,25 @@
+{
+  "name": "beer-server",
+  "version": "0.1.0",
+  "description": "Server for BeerDecoded",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeerDecode/beer-server.git"
+  },
+  "keywords": [
+    "beer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BeerDecode/beer-server/issues"
+  },
+  "homepage": "https://github.com/BeerDecode/beer-server#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}
