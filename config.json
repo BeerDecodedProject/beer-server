@@ -1,3 +1,11 @@
 {
-    "httpPort": 80
+    "httpPort": 80,
+    "rHost": "localhost",
+    "database": {
+        "port": 28015,
+        "db": "beerdecoded",
+        "user": "admin",
+        "password": "",
+        "timeout": 2
+    }
 }

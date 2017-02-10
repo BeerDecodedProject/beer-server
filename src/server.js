@@ -1,28 +1,37 @@
-const fs = require('fs')
-const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
+(async () => {
+    const fs = require('fs')
+    const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
 
-const Koa = require('koa')
-const Router = require('koa-router')
+    const DBManager = require('./db-manager')
+    const dbManager = new DBManager(config)
 
-const app = new Koa()
-const router = new Router({
-    prefix: '/api'
-})
+    await dbManager.init()
+    await dbManager.checkStructure()
 
-router.use(async function (ctx, next) {
-    const start = Date.now()
-    await next()
-    const delta = Math.ceil(Date.now() - start)
-    ctx.set('X-Response-Time', `${delta}ms`)
-})
+    const Koa = require('koa')
+    const Router = require('koa-router')
 
-router.get('/', function (ctx, next) {
-    ctx.body = "Hello, world!"
-})
-
-app
-    .use(router.routes())
-    .use(router.allowedMethods())
-    .listen(config.httpPort, () => {
-        console.log(`Some magic is happening on port ${config.httpPort}...`)
+    const app = new Koa()
+    const router = new Router({
+        prefix: '/api'
     })
+
+    router.use(async function (ctx, next) {
+        const start = Date.now()
+        await next()
+        const delta = Math.ceil(Date.now() - start)
+        ctx.set('X-Response-Time', `${delta}ms`)
+    })
+
+    router.get('/', function (ctx, next) {
+        ctx.body = "Hello, world!"
+    })
+
+    app
+        .use(router.routes())
+        .use(router.allowedMethods())
+        .listen(config.httpPort, () => {
+            console.log(`Some magic is happening on port ${config.httpPort}...`)
+        })
+
+})()
