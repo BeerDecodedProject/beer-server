@@ -1,11 +1,11 @@
 {
-    "httpPort": 80,
-    "database": {
-        "host": "localhost",
-        "port": 28015,
-        "db": "beerdecoded",
-        "user": "admin",
-        "password": "",
-        "timeout": 2
-    }
+  "httpPort": 80,
+  "database": {
+    "host": "localhost",
+    "port": 28015,
+    "db": "beerdecoded",
+    "user": "admin",
+    "password": "",
+    "timeout": 2
+  }
 }
