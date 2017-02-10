@@ -24,3 +24,8 @@ $ npm install
 $ npm start
 ```
 
+## Generate shitty datas
+
+```bash
+$ npm run shitty-datas
+```
