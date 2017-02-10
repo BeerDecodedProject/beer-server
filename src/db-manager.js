@@ -1,6 +1,14 @@
 const rethink = require('rethinkdb')
 
 class DBManager {
+
+    static get conn(){
+        return this._conn
+    }
+    static set conn(conn){
+        DBManager._conn = conn
+    }
+
     constructor(config) {
         this.config = config
     }
@@ -8,7 +16,7 @@ class DBManager {
     init() {
         return new Promise(async (resolve, reject) => {
             try {
-                this.connection = await rethink.connect(this.config.database)
+                DBManager.conn = await rethink.connect(this.config.database)
                 resolve()
             } catch (e) {
                 reject(e)
@@ -19,7 +27,7 @@ class DBManager {
     checkStructure() {
         return new Promise(async (resolve, reject) => {
             const dbExists = await rethink.dbList().contains(this.config.database.db)
-                .do(databaseExists => databaseExists).run(this.connection)
+                .do(databaseExists => databaseExists).run(DBManager.conn)
 
             if (!dbExists) {
                 console.log(`Please ensure that you have a database called : ${this.config.database.db}`)
@@ -30,7 +38,7 @@ class DBManager {
             const tableNames = ['beer', 'brewery', 'measurement', 'seller']
             tableNames.forEach(async (tbName) => {
                 tableChecks[tableChecks.length] = rethink.tableList().contains(tbName)
-                    .do(tbExists => tbExists).run(this.connection)
+                    .do(tbExists => tbExists).run(DBManager.conn)
             });
             (await Promise.all(tableChecks)).forEach(exists => {
                 if (!exists) {

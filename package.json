@@ -21,8 +21,9 @@
   },
   "homepage": "https://github.com/BeerDecode/beer-server#readme",
   "dependencies": {
+    "faker": "3.1.0",
     "koa": "2.0.0-alpha.7",
     "koa-router": "7.0.1",
-    "rethinkdb": "^2.3.3"
+    "rethinkdb": "2.3.3"
   }
 }
