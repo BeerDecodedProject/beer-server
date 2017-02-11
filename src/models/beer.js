@@ -34,7 +34,8 @@ class BeerModel {
       .zip()
       .merge(function (beer) {
         return {
-          pricesSellers: rethink.table('seller').getAll(rethink.args(beer('prices')('seller'))).coerceTo('array')
+          pricesSellers: rethink.table('seller').getAll(rethink.args(beer('prices')('seller'))).coerceTo('array'),
+          measurements: rethink.table('measurement').getAll(beer('id'), {index:'beer'}).coerceTo('array')
         }
       }).run(DBManager.conn)).next()
   }
