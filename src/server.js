@@ -33,6 +33,7 @@
   router.get('/beers', async function (ctx) {
     ctx.body = await BeerModel.list()
   })
+
   router.get('/beers/:id', async function (ctx) {
     try {
       const response = await BeerModel.get(ctx.params.id)
@@ -48,6 +49,10 @@
   router.get('/beers/search/:str', async function (ctx) {
     ctx.body = await BeerModel.search(ctx.params.str)
     ctx.status = 200
+  })
+
+  router.get('/trees/beers', async function(ctx) {
+    ctx.body = await BeerModel.tree()
   })
 
   app

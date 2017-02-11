@@ -10,7 +10,7 @@ class BreweryModel {
     return rethink.table('brewery').sample(1).run(DBManager.conn)
   }
 
-  static async clear(){
+  static async clear() {
     return (await rethink.table('brewery').run(DBManager.conn)).toArray()
   }
 }

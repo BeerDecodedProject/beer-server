@@ -45,6 +45,10 @@ class BeerModel {
     }).run(DBManager.conn)
     return result.toArray()
   }
+
+  static async tree() {
+    return Promise.resolve({ children: await BeerModel.list() });
+  }
 }
 
 module.exports = BeerModel
