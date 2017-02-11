@@ -10,8 +10,8 @@ class SellerModel {
     return rethink.table('seller').sample(1).run(DBManager.conn)
   }
 
-  static clear(){
-    return rethink.table('seller').delete().run(DBManager.conn)
+  static async clear(){
+    return (await rethink.table('seller').run(DBManager.conn)).toArray()
   }
 }
 

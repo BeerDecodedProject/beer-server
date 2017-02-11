@@ -1,10 +1,13 @@
 (async () => {
-  const fs = require('fs')
-  const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
+  const config = require('../config.json')
 
   const DBManager = require('./db-manager')
-  const dbManager = new DBManager(config)
+  const dbManager = new DBManager(config.database)
 
+  const BreweryModel = require('./models/brewery')
+  const SellerModel = require('./models/seller')
+  const BeerModel = require('./models/beer')
+  
   await dbManager.init()
   await dbManager.checkStructure()
 
@@ -23,8 +26,12 @@
     ctx.set('X-Response-Time', `${delta}ms`)
   })
 
-  router.get('/', function (ctx, next) {
+  router.get('/', function (ctx) {
     ctx.body = "Hello, world!"
+  })
+
+  router.get('/beers', async function(ctx) {
+    ctx.body = await BeerModel.list()
   })
 
   app

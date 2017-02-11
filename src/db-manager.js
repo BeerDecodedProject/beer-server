@@ -16,7 +16,7 @@ class DBManager {
   init() {
     return new Promise(async (resolve, reject) => {
       try {
-        DBManager.conn = await rethink.connect(this.config.database)
+        DBManager.conn = await rethink.connect(this.config)
         resolve()
       } catch (e) {
         reject(e)
@@ -26,11 +26,11 @@ class DBManager {
 
   checkStructure() {
     return new Promise(async (resolve, reject) => {
-      const dbExists = await rethink.dbList().contains(this.config.database.db)
+      const dbExists = await rethink.dbList().contains(this.config.db)
         .do(databaseExists => databaseExists).run(DBManager.conn)
 
       if (!dbExists) {
-        console.log(`Please ensure that you have a database called : ${this.config.database.db}`)
+        console.log(`Please ensure that you have a database called : ${this.config.db}`)
         process.exit(1)
       }
 

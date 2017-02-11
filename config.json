@@ -1,5 +1,6 @@
 {
   "httpPort": 80,
+  "url": "http://localhost",
   "database": {
     "host": "localhost",
     "port": 28015,
