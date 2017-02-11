@@ -23,7 +23,7 @@ class BeerModel {
   }
 
   static async get(id) {
-    return (await rethink.table('beer').eqJoin('brewery', rethink.table('brewery')).filter({ left: { id: '0153d3c9-0e28-486b-87b1-bff1c65b7841' } }).map(row => {
+    return (await rethink.table('beer').eqJoin('brewery', rethink.table('brewery')).filter({ left: { id: id } }).map(row => {
       return {
         left: row('left'),
         right: {
@@ -31,7 +31,12 @@ class BeerModel {
         }
       }
     })
-    .zip().run(DBManager.conn)).toArray()
+      .zip()
+      .merge(function (beer) {
+        return {
+          pricesSellers: rethink.table('seller').getAll(rethink.args(beer('prices')('seller'))).coerceTo('array')
+        }
+      }).run(DBManager.conn)).next()
   }
 }
 

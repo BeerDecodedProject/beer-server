@@ -34,7 +34,18 @@
     ctx.body = await BeerModel.list()
   })
   router.get('/beers/:id', async function (ctx) {
-      ctx.body = await BeerModel.get(ctx.params.id)
+    try {
+      const response = await BeerModel.get(ctx.params.id)
+      response.prices.forEach((price, i) => {
+        response.prices[i].seller = response.pricesSellers.filter(pricesSeller => pricesSeller.id == price.seller)[0].name
+      })
+
+      ctx.body = response
+    } catch (e) {
+      console.error(e)
+      ctx.status = 500
+    }
+
   })
 
   app
