@@ -18,5 +18,5 @@
       console.log('Sellers generated')
       process.exit(0)
     })
-  } 
+  }
 })()

@@ -7,7 +7,7 @@
   const BreweryModel = require('./models/brewery')
   const SellerModel = require('./models/seller')
   const BeerModel = require('./models/beer')
-  
+
   await dbManager.init()
   await dbManager.checkStructure()
 
@@ -30,8 +30,11 @@
     ctx.body = "Hello, world!"
   })
 
-  router.get('/beers', async function(ctx) {
+  router.get('/beers', async function (ctx) {
     ctx.body = await BeerModel.list()
+  })
+  router.get('/beers/:id', async function (ctx) {
+      ctx.body = await BeerModel.get(ctx.params.id)
   })
 
   app

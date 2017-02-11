@@ -21,6 +21,18 @@ class BeerModel {
       }
     }).run(DBManager.conn)).toArray()
   }
+
+  static async get(id) {
+    return (await rethink.table('beer').eqJoin('brewery', rethink.table('brewery')).filter({ left: { id: '0153d3c9-0e28-486b-87b1-bff1c65b7841' } }).map(row => {
+      return {
+        left: row('left'),
+        right: {
+          brewery: row('right')
+        }
+      }
+    })
+    .zip().run(DBManager.conn)).toArray()
+  }
 }
 
 module.exports = BeerModel
