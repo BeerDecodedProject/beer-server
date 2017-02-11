@@ -39,13 +39,15 @@
       response.prices.forEach((price, i) => {
         response.prices[i].seller = response.pricesSellers.filter(pricesSeller => pricesSeller.id == price.seller)[0].name
       })
-
       ctx.body = response
     } catch (e) {
       console.error(e)
       ctx.status = 500
     }
-
+  })
+  router.get('/beers/search/:str', async function (ctx) {
+    ctx.body = await BeerModel.search(ctx.params.str)
+    ctx.status = 200
   })
 
   app

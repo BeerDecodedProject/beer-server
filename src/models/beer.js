@@ -38,6 +38,13 @@ class BeerModel {
         }
       }).run(DBManager.conn)).next()
   }
+
+  static async search(str) {
+    const result = await rethink.table('beer').filter(beer => {
+      return beer('name').match('^' + str)
+    }).run(DBManager.conn)
+    return result.toArray()
+  }
 }
 
 module.exports = BeerModel
