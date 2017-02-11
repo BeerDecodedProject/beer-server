@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --harmony .",
+    "start": "nodemon --harmony .",
     "shitty-datas": "node --harmony src/generators/clear.js && node --harmony src/generators/brewery.js && node --harmony src/generators/seller.js && node --harmony src/generators/beer.js"
   },
   "repository": {
@@ -26,5 +26,8 @@
     "koa": "2.0.0-alpha.7",
     "koa-router": "7.0.1",
     "rethinkdb": "2.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
