@@ -1,4 +1,4 @@
-# BeerEncoded
+# BeerDecoded
 
 ## Requirements
 
@@ -6,7 +6,7 @@
 
 ## Install
 
-Clone the project : 
+Clone the project :
 
 ```bash
 $ git clone git@github.com:BeerDecodedProject/beer-server.git
