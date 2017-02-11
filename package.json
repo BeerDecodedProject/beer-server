@@ -15,7 +15,10 @@
   "keywords": [
     "beer"
   ],
-  "author": "",
+  "contributors": [
+    "Xavier Stouder <xavier@stouder.io>",
+    "Nolan Rigo <nolan.rigo@gmail.com>"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BeerDecode/beer-server/issues"
